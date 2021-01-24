@@ -6,6 +6,7 @@ import {
   FormControl,
   Typography,
   makeStyles,
+  InputLabel,
   TextField,
 } from "@material-ui/core";
 
@@ -15,6 +16,9 @@ import ListTodo from "./ListTodo";
 import Todo from "./Todo";
 
 const styles = makeStyles((theme) => ({
+  add: {
+    //  backgroundColor: "blue",
+  },
   root: {
     "& input": {
       color: "white",
@@ -22,12 +26,14 @@ const styles = makeStyles((theme) => ({
       borderRadius: 5,
     },
     borderRadius: 5,
-    width: "66vw",
-    maxWidth: "70vw",
+    width: "80%",
   },
   btn: {
     height: "56px",
-    marginLeft: 12,
+    width: "20%",
+    borderTopLeftRadius: "0",
+    borderBottomLeftRadius: "0",
+    marginLeft: "-2px",
   },
 }));
 
@@ -50,8 +56,9 @@ const Add = (props) => {
     }
   };
   return (
-    <Box>
+    <Box width="50%" className={classes.add}>
       <TextField
+        label="Add Todo"
         onKeyPress={handleKeyPress}
         variant="outlined"
         color="secondary"

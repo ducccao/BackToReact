@@ -24,9 +24,10 @@ const styles = makeStyles((theme) => ({
     justifyContent: "space-between",
     backgroundColor: "white",
     border: "1px solid black",
-    padding: 12,
-    margin: 12,
-    width: "70vw",
+    padding: "12px 0",
+    marginBottom: 12,
+    marginTop: 12,
+    width: "100%",
     borderRadius: 5,
   },
   btn: {
@@ -60,7 +61,7 @@ const styles = makeStyles((theme) => ({
 
 const Todo = (props) => {
   const classes = styles();
-  console.log(props);
+  //console.log(props);
   const { id, value } = props.todoValues;
   const [editClick, setEditClick] = useState(false);
   const [todo, setTodo] = useState("");
@@ -77,6 +78,7 @@ const Todo = (props) => {
   };
 
   const handleEditChange = (e) => {
+    console.log("ID = ", id);
     setTodo(e.target.value);
   };
 

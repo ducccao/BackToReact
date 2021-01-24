@@ -6,24 +6,29 @@ import {
   FormControl,
   Typography,
   makeStyles,
+  Container,
 } from "@material-ui/core";
 import Add from "./Add";
 import ListTodo from "./ListTodo";
 import Todo from "./Todo";
 import axios from "axios";
+import FilterByID from "./FilterByID";
 
 const styles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
-    width: "100vw",
+    backgroundColor: "#585858",
+    minHeight: "100vh",
+  },
+  header: {
     display: "flex",
     justifyContent: "center",
-    flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#585858",
   },
-  header: {},
-  add: {},
+  groupInput: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   ListTodo: {},
   heading: {
     padding: 24,
@@ -118,30 +123,49 @@ const TodoList = () => {
         console.log(er);
       });
   };
+  const findTodo = (id) => {
+    const url = `https://600d3950f979dd001745c8a3.mockapi.io/api/todo/${id}`;
+    const config = {};
+    axios
+      .get(url, config)
+      .then((rs) => {
+        console.log(rs);
+        let data = [{ ...rs.data }];
+
+        setTodoList(data);
+      })
+      .catch((er) => {
+        setIsEdit(!isEdit);
+        console.log(er);
+      });
+  };
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.header}>
-        <Typography className={classes.heading}>To Do List</Typography>
-      </Box>
-      <Box className={classes.add}>
-        <Add addTodo={addTodo} />
-      </Box>
+      <Container>
+        <Box className={classes.header}>
+          <Typography className={classes.heading}>To Do List</Typography>
+        </Box>
+        <Box className={classes.groupInput}>
+          <Add addTodo={addTodo} />
+          <FilterByID findTodo={findTodo} />
+        </Box>
 
-      <Box className={classes.ListTodo}>
-        <ListTodo>
-          {todoList.map((td) => {
-            return (
-              <Todo
-                key={td.id}
-                todoValues={td}
-                handleEditTodo={handleEditTodo}
-                handleDelTodo={handleDelTodo}
-              />
-            );
-          })}
-        </ListTodo>
-      </Box>
+        <Box className={classes.ListTodo}>
+          <ListTodo>
+            {todoList.map((td) => {
+              return (
+                <Todo
+                  key={td.id}
+                  todoValues={td}
+                  handleEditTodo={handleEditTodo}
+                  handleDelTodo={handleDelTodo}
+                />
+              );
+            })}
+          </ListTodo>
+        </Box>
+      </Container>
     </Box>
   );
 };
