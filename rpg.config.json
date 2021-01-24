@@ -1,0 +1,18 @@
+{
+    "autoImport": "ES6",
+    "codeStyle": "default",
+    "noMergeOld": false,
+    "noShape": false,
+    "tabWidth": 2,
+    "quote": "double",
+    "trailingComma": false,
+    "semicolon": true,
+    "arrayLike": true,
+    "isRequired": false,
+    "include": [
+    
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+}
