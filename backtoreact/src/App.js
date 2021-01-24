@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Hi from "./components/Hi";
+import StateFull from "./components/StateFull";
+import HOC from "./components/HOC";
+import RaBS from "./components/RaBS";
+import VariationsStateLess from "./components/VariationsStateLess";
+
+const ExtendedCpn = HOC(Hi);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <VariationsStateLess name={"Duccao"} />;
 }
 
 export default App;
